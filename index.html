@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idle Game</title>
+</head>
+<body>
+    <h1>Points: <span id="points">0</span></h1>
+    <button id="click-btn">Click</button>
+    <button id="upgrade-increment-btn">Upgrade Increment (10 points)</button>
+    <button id="upgrade-time-btn">Upgrade Time (20 points)</button>
+
+    <script type="module">
+        import init, { Game } from './pkg/idle_game.js';
+
+        async function main() {
+            await init();
+            const game = Game.new();
+            const pointsDisplay = document.getElementById('points');
+            const clickBtn = document.getElementById('click-btn');
+            const upgradeIncrementBtn = document.getElementById('upgrade-increment-btn');
+            const upgradeTimeBtn = document.getElementById('upgrade-time-btn');
+
+            function updatePoints() {
+                pointsDisplay.textContent = game.get_points();
+            }
+
+            clickBtn.addEventListener('click', () => {
+                game.click();
+                updatePoints();
+            });
+
+            upgradeIncrementBtn.addEventListener('click', () => {
+                if (game.get_points() >= 10) {
+                    game.upgrade_increment();
+                    updatePoints();
+                }
+            });
+
+            upgradeTimeBtn.addEventListener('click', () => {
+                if (game.get_points() >= 20) {
+                    game.upgrade_time();
+                    updatePoints();
+                }
+            });
+        }
+
+        main();
+    </script>
+</body>
+</html>

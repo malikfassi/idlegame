@@ -1,0 +1,84 @@
+# Idle Game Project
+
+This is a simple idle game project built with Rust and WebAssembly (Wasm). In this game, a counter (called "points") can be incremented by clicking a button or by upgrades that automatically increase the counter over time.
+
+## Features
+- Click button to gain points
+- Buy upgrades to increase the increment value
+- Buy upgrades to increase the automatic time-based increment
+
+## Prerequisites
+
+### Software Requirements
+- [Rust](https://www.rust-lang.org/tools/install)
+- [wasm-pack](https://rustwasm.github.io/wasm-pack/installer/)
+- [Node.js](https://nodejs.org/) and npm (for `http-server` or `live-server`)
+
+### Libraries
+- **wasm-bindgen**: Enables Rust functions to interact with JavaScript.
+
+## Project Setup
+
+### Step 1: Install Rust and Wasm-Pack
+1. Install Rust using `rustup`:
+    ```bash
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    ```
+2. Install `wasm-pack`:
+    ```bash
+    curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+    ```
+
+### Step 2: Set Up the Project
+1. Clone the repository and navigate to the project directory:
+    ```bash
+    git clone https://github.com/your-username/idle-game.git
+    cd idle-game
+    ```
+
+2. Build the Rust code for WebAssembly:
+    ```bash
+    wasm-pack build --target web
+    ```
+
+### Step 3: Install and Run a Local Server
+This project requires a local server to serve the WebAssembly file. You can use either `http-server` or `live-server`.
+
+#### Option 1: Using http-server
+1. Install `http-server` globally:
+    ```bash
+    npm install -g http-server
+    ```
+2. Start the server:
+    ```bash
+    http-server .
+    ```
+3. Open `http://localhost:8080` in your browser.
+
+#### Option 2: Using live-server
+1. Install `live-server` globally:
+    ```bash
+    npm install -g live-server
+    ```
+2. Start `live-server`:
+    ```bash
+    live-server
+    ```
+3. The project should automatically open in your default browser.
+
+### Step 4: Run the Game
+- Open the project URL in your browser (usually `http://localhost:8080`).
+- Click the button to start gaining points, and use points to buy upgrades.
+
+## Project Structure
+- **src/lib.rs**: Main Rust code for game logic
+- **pkg/**: Contains the generated WebAssembly and JavaScript files (after running `wasm-pack build`)
+- **index.html**: Basic HTML for the game interface
+- **index.js**: JavaScript for integrating Wasm and managing the game UI
+
+## Troubleshooting
+- If nothing happens when you click, check the browser console for any errors.
+- Ensure you’re serving the project using `http-server` or `live-server` as other servers might not handle `.wasm` files correctly.
+
+## License
+This project is licensed under the MIT License.
